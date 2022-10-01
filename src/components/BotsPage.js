@@ -16,11 +16,11 @@ function BotsPage() {
  },[])
 
 function addBotToArmy(armyBot){
-  if(!botArmy.find(bot => bot!== armyBot)){
+
     const foundBot = bots.find(bot => bot === armyBot)  //finds bot
 
     setBotArmy([...botArmy, foundBot])
-  }
+  
 }
 
 function releaseBotFromArmy(armyBot){
@@ -30,10 +30,21 @@ function releaseBotFromArmy(armyBot){
 
 }
 
+function DeleteBot(armyBot){
+  const filterBots = bots.filter(bot => bot !== armyBot.id)
+  setBots(filterBots)
+  const filterArmyBots = botArmy.filter(bot => bot !== armyBot.id)
+  setBotArmy(filterArmyBots)
+
+  fetch(`http://localhost:8002/bots/${armyBot.id}`,{
+    method: 'DELETE'
+  })
+}
+
   return (
     <div>
-           <YourBotArmy botArmy={botArmy} getAwayBot={releaseBotFromArmy}/>
-      <BotCollection bots={bots} addBot={addBotToArmy}/>
+           <YourBotArmy botArmy={botArmy} getAwayBot={releaseBotFromArmy} removeBot ={DeleteBot}/>
+      <BotCollection bots={bots} addBot={addBotToArmy} removeBot ={DeleteBot}/>
     </div>
   )
 }
