@@ -11,7 +11,7 @@ function YourBotArmy({botArmy, getAwayBot}) {
       <div className="ui five column grid">
         <div className="row bot-army-row">
           <h3>{botArmy.map((bot) => (
-            <BotCard bot={bot} handleBot= {getAwayBot}></BotCard>
+            <BotCard key= {bot.id} bot={bot} handleBot= {getAwayBot}></BotCard>
           ))}</h3>
           Your Bot Army
         </div>
