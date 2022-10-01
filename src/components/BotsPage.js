@@ -16,16 +16,23 @@ function BotsPage() {
  },[])
 
 function addBotToArmy(armyBot){
-  if(!botArmy.find(bot => bot ===armyBot)){
+  if(!botArmy.find(bot => bot!== armyBot)){
     const foundBot = bots.find(bot => bot === armyBot)  //finds bot
 
     setBotArmy([...botArmy, foundBot])
   }
 }
 
+function releaseBotFromArmy(armyBot){
+  
+  const remainedBotArmyList = botArmy.filter((bot)=> bot !== armyBot)
+  setBotArmy(remainedBotArmyList)
+
+}
+
   return (
     <div>
-           <YourBotArmy botArmy={botArmy}/>
+           <YourBotArmy botArmy={botArmy} getAwayBot={releaseBotFromArmy}/>
       <BotCollection bots={bots} addBot={addBotToArmy}/>
     </div>
   )
