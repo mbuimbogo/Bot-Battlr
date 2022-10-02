@@ -9,6 +9,7 @@ function BotsPage() {
   const [bots, setBots] = useState([]);
   const [botArmy, setBotArmy] =  useState([]);
 
+
  useEffect(()=> {
   fetch("http://localhost:8002/bots")
   .then((res)=> res.json())
@@ -39,6 +40,7 @@ function DeleteBot(armyBot){
   fetch(`http://localhost:8002/bots/${armyBot.id}`,{
     method: 'DELETE'
   })
+  
 }
 
   return (
